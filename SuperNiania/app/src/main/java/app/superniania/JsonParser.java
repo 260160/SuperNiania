@@ -1,4 +1,4 @@
-package app.lukas121213.superniania;
+package app.superniania;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import app.lukas121213.superniania.Auta;
+
 public class JsonParser {
 
     public static Auta parseAuta(InputStream json) throws Exception {

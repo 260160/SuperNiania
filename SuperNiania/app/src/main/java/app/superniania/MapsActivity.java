@@ -1,69 +1,40 @@
-package app.lukas121213.superniania;
+package app.superniania;
 
-import android.graphics.Color;
-import android.util.Log;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.HttpRequestRetryHandler;
-import org.apache.http.conn.params.ConnManagerParams;
-import org.apache.http.conn.params.ConnPerRouteBean;
-import org.apache.http.conn.scheme.PlainSocketFactory;
-import org.apache.http.conn.scheme.Scheme;
-import org.apache.http.conn.scheme.SchemeRegistry;
-import org.apache.http.impl.client.AbstractHttpClient;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
-import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.HttpProtocolParams;
-import org.apache.http.protocol.HttpContext;
 import android.app.AlertDialog;
-import android.os.Handler;
-import android.os.AsyncTask;
+import android.graphics.Color;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.os.Handler.Callback;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import android.view.KeyEvent;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.TextView;
-import android.os.Handler.Callback;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import app.superniania.model.Location;
+import app.superniania.rest.AsyncCaller;
+import app.superniania.rest.RestClient;
+import app.superniania.superniania.R;
 
 //public class MapsActivity extends FragmentActivity  implements Callback {
-   public class MapsActivity extends FragmentActivity implements OnMapClickListener, OnMapLongClickListener, OnMarkerClickListener{
+   public class MapsActivity extends FragmentActivity implements Callback, GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
     private GoogleMap googleMap;
-
-    boolean markerClicked;
-    PolygonOptions polygonOptions;
-    Polygon polygon;
+    private RestClient restClient;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
+        googleMap.moveCamera( CameraUpdateFactory.zoomTo(13.2f));
         googleMap.setMyLocationEnabled(true);
-        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         googleMap.setOnMapClickListener(this);
         googleMap.setOnMapLongClickListener(this);
-        googleMap.setOnMarkerClickListener(this);
 
         //new AsyncCaller2(new Handler(this)).execute();
 
@@ -100,20 +71,48 @@ import java.net.URL;
         }
     }
 
-    /**
-     * This is where we can add markers or lines, add listeners or move the camera. In this case, we
-     * just add a marker near Africa.
-     * <p/>
-     * This should only be called once and when we are sure that {@link #mMap} is not null.
-     */
     private void setUpMap() {
-        CircleOptions circleOptions = new CircleOptions()
+      /*  CircleOptions circleOptions = new CircleOptions()
                 .center(new LatLng(0,0)).radius(1000);
         googleMap.addCircle(new CircleOptions()
                 .center(new LatLng(100, 100))
                 .radius(10000)
                 .strokeColor(Color.RED)
                 .fillColor(Color.YELLOW));
-        //googleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        //googleMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));*/
+    }
+
+    @Override
+    public void onMapClick(LatLng point) {
+        MarkerOptions marker=new MarkerOptions();
+        marker.position(point);
+        googleMap.addMarker(marker);
+        CircleOptions circle=new CircleOptions();
+        circle.center(point).fillColor(Color.LTGRAY).radius(4);
+        googleMap.addCircle(circle);
+
+        Location clickedLocation = new Location();
+        clickedLocation.setLatitude(point.latitude );
+        clickedLocation.setLongitude(point.longitude );
+        restClient =new RestClient();
+        restClient.execute(clickedLocation);
+       //restClient= new RestClient(new Handler(this));
+        //restClient.execute();
+    }
+
+    @Override
+    public void onMapLongClick(LatLng point) {
+        googleMap.clear();
+    }
+
+    @Override
+    public boolean handleMessage(Message message) {
+       // String updateNotice = msg.getData().getString("text");
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Dodawanie nowej lokalizacji");
+        dialog.setMessage("OK");
+        dialog.setIcon(android.R.drawable.ic_dialog_info);
+        dialog.show();
+        return false;
     }
 }

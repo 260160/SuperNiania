@@ -1,4 +1,4 @@
-package app.lukas121213.superniania;
+package app.superniania;
 
 /**
  * Created by Łukasz on 2015-05-22.

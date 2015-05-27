@@ -1,4 +1,4 @@
-package app.lukas121213.superniania;
+package app.superniania;
 
 
 public class Auta {
