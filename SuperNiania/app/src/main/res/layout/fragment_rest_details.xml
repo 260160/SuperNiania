@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Godziny obowiązywania"
+        android:id="@+id/textView4" />
+
+    <EditText
+        android:layout_width="63dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateFrom"
+        android:text="od" />
+
+    <EditText
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateTo"
+        android:text="do" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Typ lokalizacji"
+        android:id="@+id/textView5" />
+
+    <RadioGroup android:id="@+id/RadioGroup01"
+        android:checkedButton="@+id/RadioGroup01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_above="@+id/textView3"
+        android:layout_alignEnd="@+id/button">
+         <RadioButton
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Obowiązkowa"
+             android:id="@+id/correctRadiobutton"
+             android:checked="false" />
+
+         <RadioButton
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="Zabroniona"
+             android:id="@+id/failRadiobutton"
+             android:checked="false" />
+         </RadioGroup>
+</LinearLayout>
