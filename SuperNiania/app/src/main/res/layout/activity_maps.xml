@@ -1,5 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical" >
 
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:id="@+id/map" tools:context=".MapsActivity"
-    android:name="com.google.android.gms.maps.SupportMapFragment" />
+    <TextView
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="20dp"
+        android:text="współrzędne GPS"
+        android:layout_alignTop="@+id/RadioGroup01"
+        android:layout_alignParentStart="true" />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="242dp"
+              android:layout_height="275dp"
+              android:id="@+id/map"
+              tools:context=".MapsActivity"
+              android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_row="0"
+        android:layout_column="4"
+        android:layout_marginTop="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dodaj lokalizacje"
+        android:id="@+id/button"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="29dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="addLocation"
+       />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView2"
+        android:textSize="20dp"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignParentStart="true" />
+        " />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/textView3"
+        android:textSize="20dp"
+        android:layout_above="@+id/button"
+        />
+<RadioGroup android:id="@+id/RadioGroup01"
+android:checkedButton="@+id/RadioGroup01"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:orientation="vertical"
+    android:layout_above="@+id/textView3"
+    android:layout_alignEnd="@+id/button">
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="zabroniona"
+        android:id="@+id/radioButton2"
+        android:checked="false"
+        />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="nakazana"
+        android:id="@+id/radioButton"
+        android:checked="false"
+        />
+</RadioGroup>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tabs"
+        android:id="@+id/button2"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toStartOf="@+id/RadioGroup01"
+        android:onClick="newTab"/>
+</RelativeLayout>

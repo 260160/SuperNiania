@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">SuperNiania</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_activity_top_rated_fragment">TopRatedFragment</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 </resources>

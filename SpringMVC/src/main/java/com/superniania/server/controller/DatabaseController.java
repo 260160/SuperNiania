@@ -1,4 +1,4 @@
-package com.mkyong.common.controller;
+package com.superniania.server.controller;
 
 import java.util.List;
 
@@ -24,15 +24,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.superniania.server.model.Location;
+import com.superniania.server.service.DatabaseService;
+
 @Controller
 @Repository
-@RequestMapping("/movie")
-public class MovieController {
+@RequestMapping("/db")
+public class DatabaseController {
 	
 	@Autowired
-       AutaService autaService;
+       DatabaseService databaseService;
 
-	@RequestMapping(value="/{name}", method = RequestMethod.GET)
+/*	@RequestMapping(value="/{name}", method = RequestMethod.GET)
 	//public ResponseEntity<String> getMovie(@PathVariable String name, ModelMap model) {
 	public @ResponseBody Auta getMovie(@PathVariable String name, ModelMap model) {
 		
@@ -42,7 +45,7 @@ public class MovieController {
 		return auta.get(0);
 		//return new ResponseEntity<String>( "lala",HttpStatus.OK);
 
-	}
+	}*/
 	/*
 	@RequestMapping(value="/{name}",method=RequestMethod.POST)
 		public void create(@RequestBody @Valid Auta auta) {
@@ -51,9 +54,10 @@ public class MovieController {
 		}
 	*/
 	
-	@RequestMapping(value="/{name}",method=RequestMethod.POST)
+	@RequestMapping(value="/saveLocation",method=RequestMethod.POST)
 	public void create(@RequestBody @Valid Location location) {
 		System.out.println("MAM COS****"+location.getLatitude());
+		 databaseService.addAuto(location);
 		//autaService.addAuto(auta.getId(), auta.getMarka());
 	//	autaService.findAuto(auta.getMarka());
 	}

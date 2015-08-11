@@ -33,7 +33,7 @@ public class RestClient extends AsyncTask<Location, Void,String> {
     @Override
     protected String doInBackground(Location... locations) {
         System.out.println("Jestem tutaj "+locations[0].getLatitude());
-        url="http://192.168.1.101:8084/SpringMVC/movie/mazda";
+        url="http://192.168.1.101:8084/SupernianiaServer/db/saveLocation";
         try {
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(url);

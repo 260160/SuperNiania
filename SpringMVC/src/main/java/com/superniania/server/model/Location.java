@@ -1,4 +1,4 @@
-package com.mkyong.common.controller;
+package com.superniania.server.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
@@ -11,6 +11,7 @@ public class Location implements Serializable{
 	@Id
 	 private Double longitude;
     private Double latitude;
+    private String type;
 
   public Double getLongitude() {
       return longitude;
@@ -27,4 +28,12 @@ public class Location implements Serializable{
   public void setLatitude(Double latitude) {
       this.latitude = latitude;
   }
+
+public String getType() {
+	return type;
+}
+
+public void setType(String type) {
+	this.type = type;
+}
 }

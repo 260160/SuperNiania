@@ -11,7 +11,7 @@ android {
 
     }
     defaultConfig {
-        applicationId "app.lukas121213.superniania"
+        applicationId "app.superniania"
         minSdkVersion 17
         targetSdkVersion 22
         versionCode 1
